@@ -1,15 +1,16 @@
 import mongoose from "mongoose";
 import config from "../config";
+import {ArtistFields} from "../types";
 
 const Schema = mongoose.Schema;
 
-const ArtistSchema = new Schema({
+const ArtistSchema = new Schema<ArtistFields>({
     name: {
         type: String,
         unique: true,
         required: true
     },
-    photo: String,
+    photo: String || null,
     information: String
 
 }, config.mongoose.versionKey);

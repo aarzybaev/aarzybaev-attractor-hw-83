@@ -1,10 +1,11 @@
 import mongoose, {Types} from "mongoose";
 import Artist from "./Artist";
 import config from "../config";
+import {AlbumFields} from "../types";
 
 const Schema = mongoose.Schema;
 
-const AlbumSchema = new Schema({
+const AlbumSchema = new Schema<AlbumFields>({
     title: {
         type: String,
         required: true
@@ -22,7 +23,7 @@ const AlbumSchema = new Schema({
         type: String,
         required: true
     },
-    coverImage: String
+    coverImage: String || null
 }, config.mongoose.versionKey);
 
 const Album = mongoose.model('Album', AlbumSchema);

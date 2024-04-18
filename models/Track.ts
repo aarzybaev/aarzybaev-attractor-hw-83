@@ -1,10 +1,11 @@
 import mongoose, {Types} from "mongoose";
 import Album from "./Album";
 import config from "../config";
+import {TrackFields} from "../types";
 
 const Schema = mongoose.Schema;
 
-const TrackSchema = new Schema({
+const TrackSchema = new Schema<TrackFields>({
     title: {
         type: String,
         required: true
