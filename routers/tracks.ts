@@ -20,19 +20,18 @@ tracksRouter.get('/', async (req, res, next) => {
 });
 
 tracksRouter.post('/', async (req, res, next) => {
-    const title = req.body.title;
-    const album = req.body.album;
-    const duration = req.body.duration;
-
-    if (title === undefined || (/^\s*$/.test(title)) ||
-        album === undefined || (/^\s*$/.test(album)) ||
-        duration === undefined || (/^\s*$/.test(duration))) {
-        return res.status(400).json({"error": "Fields must be present in the request"});
-    }
-
-    const track = new Track({title, album, duration});
-
     try {
+        const title = req.body.title;
+        const album = req.body.album;
+        const duration = req.body.duration;
+
+        if (title === undefined || (/^\s*$/.test(title)) ||
+            album === undefined || (/^\s*$/.test(album)) ||
+            duration === undefined || (/^\s*$/.test(duration))) {
+            return res.status(400).json({"error": "Fields must be present in the request"});
+        }
+
+        const track = new Track({title, album, duration});
         const data = await track.save();
         return res.send(data);
     } catch (e) {
